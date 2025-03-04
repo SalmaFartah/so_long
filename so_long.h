@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:40:42 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/03 21:15:01 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/04 16:49:09 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,19 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "MLX42/include/MLX42/MLX42.h"
 
 typedef struct
 {
     int x;
     int y;
 }				t_pos;
+
+typedef struct
+{
+    int c;
+    int e;
+}				t_cnt;
 
 typedef struct s_list
 {
@@ -52,6 +59,7 @@ int		check_lines(t_list *map);
 int		is_wall(char *data);
 int		check_walls(t_list *map);
 
+t_cnt	flood_fill(char **map, int x, int y);
 t_pos	start_pos(t_list *map);
 int     check_path(t_list *map);
 
