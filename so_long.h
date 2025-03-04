@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:40:42 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/04 16:49:09 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/04 17:00:10 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "MLX42/include/MLX42/MLX42.h"
 
 typedef struct
 {
