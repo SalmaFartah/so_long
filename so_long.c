@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:44:05 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/04 16:58:37 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:22:35 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int ac, char *av[])
 	{
 		init_map(&map, av[1]);
 		if (!map)
-			return (write(2, "Error\n", 7));
+			return (0);
 		if(!valid(map))
 			return(ft_lstclear(&map, free), 1);
 		// mlx_init(sl_strlen(map->data) * 64, ft_lstsize(map) * 64, "so_long", 1);

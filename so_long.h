@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:40:42 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/04 17:00:10 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:29:00 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <mlx.h>
 
 typedef struct
 {
@@ -24,17 +25,14 @@ typedef struct
     int y;
 }				t_pos;
 
-typedef struct
-{
-    int c;
-    int e;
-}				t_cnt;
-
 typedef struct s_list
 {
     char *data;
     struct s_list *next;
 }				t_list;
+
+void disp_ar(char **map);
+
 
 void	init_map(t_list **map, char *file);
 // ------------------ LIBFT NEED -------------------- //
@@ -58,7 +56,8 @@ int		check_lines(t_list *map);
 int		is_wall(char *data);
 int		check_walls(t_list *map);
 
-t_cnt	flood_fill(char **map, int x, int y);
+void	free_array(char **a);
+void	flood_fill(char **map, int x, int y);
 t_pos	start_pos(t_list *map);
 int     check_path(t_list *map);
 

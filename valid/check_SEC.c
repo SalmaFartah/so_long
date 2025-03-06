@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 16:57:00 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/03 15:49:16 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/05 17:17:59 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	count(t_list *map, char c)
 int	check_SEC(t_list *map)
 {
 	if (count(map, 'P') != 1)
-		return(write(2, "Error\nIt must be ONE start point in the map !\n", 47), 0);
+		return(write(2, "Error\nIt must be one start point in the map !\n", 47), 0);
 	if (count(map, 'E') != 1)
-		return(write(2, "Error\nIt must be ONE end point in the map !\n", 45), 0);
+		return(write(2, "Error\nIt must be one end point in the map !\n", 45), 0);
 	if (count(map, 'C') < 1)
-		return(write(2, "Error\nIt must be at least ONE collectible in the map !\n", 56), 0);
+		return(write(2, "Error\nIt must be at least one collectible in the map !\n", 56), 0);
 	return (1);
 }
