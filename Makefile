@@ -40,7 +40,7 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(FLAGS) $(LIBFLAGS) $(LIBDIR)/libmlx42.a $(OBJ) -o $@
+	$(CC) $(CFLAGS) $(OBJ) -o $@
 
 clean :
 	rm -rf $(OBJ) 
