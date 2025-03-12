@@ -1,20 +1,21 @@
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+HEADERS	= -I ./MLX42/include
 
-FLAGS = -framework Cocoa -framework OpenGL -framework IOKit
-
-LIBFLAGS = -Iinclude -lglfw -L
+CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
 
 USER = sfartah
 
-LIBDIR = "/Users/$(USER)/.brew/opt/glfw/lib/"
+LIBS = MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 NAME = so_long
 
 SRC = 	so_long.c\
 		init_map.c\
 		display_ar.c\
+		draw_map.c\
+		move.c\
+		init_game.c\
 		valid/costruction.c\
 		valid/check_walls.c\
 		valid/check_SEC.c\
@@ -35,12 +36,12 @@ SRC = 	so_long.c\
 OBJ = $(SRC:.c=.o)
 
 %.o : %.c so_long.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< $(HEADERS) -o $@
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $@
+	$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADERS) -o $@
 
 clean :
 	rm -rf $(OBJ) 
