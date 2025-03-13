@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:40:42 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/13 18:18:15 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/13 19:51:35 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "MLX42/MLX42.h"
-# include "printf/ft_printf.h"
+# include "disp_func/ft_printf.h"
 
 typedef struct
 {
