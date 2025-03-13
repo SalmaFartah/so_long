@@ -6,48 +6,90 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:11:23 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/12 17:11:53 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:51:50 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void move_right(t_image img, char **map, mlx_t *mlx, t_pos c)
+void disable_collect(t_map *p, t_pos c)
 {
-	if (map[c.y][c.x + 1] != '1' && mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+	size_t i;
+	static size_t cn;
+
+	i = 0;
+	while (i < p->img.collectible->count)
 	{
-		if (map[c.y][c.x + 1] == 'C')
-			img.collectible->instances[1].enabled = false;
-		img.player->instances[0].x += 64;
+		if (p->img.collectible->instances[i].x == p->img.player->instances[0].x \
+		&& p->img.collectible->instances[i].y == p->img.player->instances[0].y)
+		{
+			p->img.collectible->instances[i].enabled = false;
+			p->map[c.y][c.x] = '0';
+			cn++;
+		}
+		i++;
+	}
+	if (cn == p->img.collectible->count)
+	{
+		p->img.exit->enabled = false;
+		p->img.exit1->enabled = true;
+	}
+	if (p->map[c.y][c.x] == 'E' && cn == p->img.collectible->count \
+	&& p->img.exit1->instances[0].x == p->img.player->instances[0].x \
+	&& p->img.exit1->instances[0].y == p->img.player->instances[0].y)
+		mlx_close_window(p->mlx);
+}
+
+void move_right(t_map *p, t_pos c)
+{
+	if (p->map[c.y][c.x + 1] != '1' && mlx_is_key_down(p->mlx, MLX_KEY_RIGHT))
+	{
+		p->img.player->instances[0].x += 64;
+		if (p->map[c.y][c.x + 1] == 'C' || p->map[c.y][c.x + 1] == 'E')
+		{
+			c.x++;
+			disable_collect(p, c);
+		}
 	}
 }
 
-void move_left(t_image img, char **map, mlx_t *mlx, t_pos c)
+void move_left(t_map *p, t_pos c)
 {
-	if (map[c.y][c.x - 1] != '1' && mlx_is_key_down(mlx, MLX_KEY_LEFT))
+	if (p->map[c.y][c.x - 1] != '1' && mlx_is_key_down(p->mlx, MLX_KEY_LEFT))
 	{
-		if (map[c.y][c.x - 1] == 'C')
-			img.collectible->instances[1].enabled = false;
-		img.player->instances[0].x -= 64;
+		
+		p->img.player->instances[0].x -= 64;
+		if (p->map[c.y][c.x - 1] == 'C' || p->map[c.y][c.x - 1] == 'E')
+		{
+			c.x--;
+			disable_collect(p, c);
+		}
 	}
 }
 
-void move_up(t_image img, char **map, mlx_t *mlx, t_pos c)
+void move_up(t_map *p, t_pos c)
 {
-	if (map[c.y - 1][c.x] != '1' && mlx_is_key_down(mlx, MLX_KEY_UP))
+	if (p->map[c.y - 1][c.x] != '1' && mlx_is_key_down(p->mlx, MLX_KEY_UP))
 	{
-		if (map[c.y - 1][c.x] == 'C')
-			img.collectible->instances[1].enabled = false;
-		img.player->instances[0].y -= 64;
+		p->img.player->instances[0].y -= 64;
+		if (p->map[c.y - 1][c.x] == 'C' || p->map[c.y - 1][c.x] == 'E')
+		{
+			c.y--;
+			disable_collect(p, c);
+		}
 	}
+	// img.player->instances[0].enabled = 
 }
 
-void move_down(t_image img, char **map, mlx_t *mlx, t_pos c)
+void move_down(t_map *p, t_pos c)
 {
-	if (map[c.y + 1][c.x] != '1' && mlx_is_key_down(mlx, MLX_KEY_DOWN))
+	if (p->map[c.y + 1][c.x] != '1' && mlx_is_key_down(p->mlx, MLX_KEY_DOWN))
 	{
-		if (map[c.y + 1][c.x] == 'C')
-			img.collectible->instances[1].enabled = false;
-		img.player->instances[0].y += 64;
+		p->img.player->instances[0].y += 64;
+		if (p->map[c.y + 1][c.x] == 'C' || p->map[c.y + 1][c.x] == 'E')
+		{
+			c.y++;
+			disable_collect(p, c);
+		}
 	}
 }

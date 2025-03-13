@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:10:15 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/12 17:19:59 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:33:59 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ void draw_map(t_list *map, t_image img, mlx_t *window)
 			if (map->data[i] == 'P')
 				mlx_image_to_window(window, img.player, i * WIDTH, j* HEIGHT);
 			if (map->data[i] == 'E')
+			{
 				mlx_image_to_window(window, img.exit, i * WIDTH, j* HEIGHT);
+				mlx_image_to_window(window, img.exit1, i * WIDTH, j* HEIGHT);
+				img.exit1->enabled = false;
+			}
 			if (map->data[i] == 'C')
 				mlx_image_to_window(window, img.collectible, i * WIDTH, j* HEIGHT);
 		}

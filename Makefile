@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
 
 USER = sfartah
 
-LIBS = MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+LIBS = MLX42/build/libmlx42.a printf/libftprintf.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 NAME = so_long
 
@@ -31,23 +31,27 @@ SRC = 	so_long.c\
 		libft/ft_lstdelone.c\
 		libft/ft_lstsize.c\
 		libft/ft_calloc.c\
-		libft/ft_bzero.c
-
+		libft/ft_bzero.c\
+	
 OBJ = $(SRC:.c=.o)
 
-%.o : %.c so_long.h
-	$(CC) $(CFLAGS) -c $< $(HEADERS) -o $@
+%.o : %.c so_long.h gnxtL/get_next_line.h printf/ft_printf.h
+	@$(CC) $(CFLAGS) -c $< $(HEADERS) -o $@
 
 all : $(NAME)
+	
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADERS) -o $@
+	@make -C ./printf
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADERS) -o $@
 
 clean :
-	rm -rf $(OBJ) 
+	@make -C ./printf clean
+	@rm -rf $(OBJ) 
 
 fclean : clean
-	rm -rf $(NAME)
+	@make -C ./printf fclean
+	@rm -rf $(NAME)
 
 re : fclean all
 

@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:40:42 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/12 17:20:22 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/13 18:18:15 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "MLX42/MLX42.h"
+# include "printf/ft_printf.h"
 
 typedef struct
 {
@@ -97,10 +98,10 @@ void	flood_fill(char **map, int x, int y);
 t_pos	start_pos(t_list *map);
 int     check_path(t_list *map);
 // --------------------------- MOVE ------------------------------- //
-void move_right(t_image img, char **map, mlx_t *mlx, t_pos c);
-void move_left(t_image img, char **map, mlx_t *mlx, t_pos c);
-void move_up(t_image img, char **map, mlx_t *mlx, t_pos c);
-void move_down(t_image img, char **map, mlx_t *mlx, t_pos c);
+void move_right(t_map *p, t_pos c);
+void move_left(t_map *p, t_pos c);
+void move_up(t_map *p, t_pos c);
+void move_down(t_map *p, t_pos c);
 // -------------------------- INIT_GAME ---------------------------- //
 void init_game(t_list *map);
 void my_keyhook(mlx_key_data_t key, void *p);
