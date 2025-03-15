@@ -16,11 +16,13 @@ SRC = 	so_long.c\
 		draw_map.c\
 		move.c\
 		init_game.c\
+		list_to_array.c\
 		valid/costruction.c\
 		valid/check_walls.c\
 		valid/check_SEC.c\
 		valid/check_path.c\
 		valid/free_ar.c\
+		valid/check_extension.c\
 		gnxtL/get_next_line.c\
 		gnxtL/get_next_line_utils.c\
 		libft/ft_lstnew.c\
@@ -32,6 +34,8 @@ SRC = 	so_long.c\
 		libft/ft_lstsize.c\
 		libft/ft_calloc.c\
 		libft/ft_bzero.c\
+		libft/ft_split.c\
+		libft/ft_strcmp.c
 	
 OBJ = $(SRC:.c=.o)
 
@@ -40,6 +44,12 @@ OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 	
+clone_mlx :
+	@git clone https://github.com/codam-coding-college/MLX42.git
+
+build :
+	@cmake ./MLX42 -B ./MLX42/build && make -C ./MLX42/build
+
 
 $(NAME) : $(OBJ)
 	@make -C ./disp_func
@@ -47,7 +57,7 @@ $(NAME) : $(OBJ)
 
 clean :
 	@make -C ./disp_func clean
-	@rm -rf $(OBJ) 
+	@rm -rf $(OBJ)
 
 fclean : clean
 	@make -C ./disp_func fclean

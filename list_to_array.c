@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   list_to_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 13:11:52 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 21:03:37 by sfartah          ###   ########.fr       */
+/*   Created: 2025/03/15 16:38:01 by sfartah           #+#    #+#             */
+/*   Updated: 2025/03/15 16:38:40 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "gnxtL/get_next_line.h"
 
-void init_map(t_list **map, char *file, int *checker)
+char **list_to_array(t_list *map)
 {
-	int		fd;
-	char	*line;
-	t_list 	*new;
+	char	**new;
+	int		i;
+	int		u;
 
-	fd = open(file, O_RDONLY);
-	while ((line = get_next_line(fd)))
+	i = 0;
+	new = ft_calloc((ft_lstsize(map) + 1), sizeof(char *));
+	while (map)
 	{
-		new = ft_lstnew(line);
-		if (!new)
-		{
-			*checker = -5;
-			return(ft_lstclear(map, free));
-		}
-		ft_lstadd_back(map, new);
+		new[i] = ft_calloc(sl_strlen(map->data) + 1, sizeof(char));
+		u = -1;
+		while (++u < sl_strlen(map->data))
+			new[i][u] = map->data[u];
+		i++;
+		map = map->next;
 	}
-	get_next_line(-1);
+	return (new);
 }

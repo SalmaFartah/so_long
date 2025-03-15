@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 13:11:52 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 21:03:37 by sfartah          ###   ########.fr       */
+/*   Created: 2025/02/20 18:19:15 by sfartah           #+#    #+#             */
+/*   Updated: 2025/03/14 23:19:35 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "gnxtL/get_next_line.h"
+#include "../so_long.h"
 
-void init_map(t_list **map, char *file, int *checker)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int		fd;
-	char	*line;
-	t_list 	*new;
+	int	i;
 
-	fd = open(file, O_RDONLY);
-	while ((line = get_next_line(fd)))
-	{
-		new = ft_lstnew(line);
-		if (!new)
-		{
-			*checker = -5;
-			return(ft_lstclear(map, free));
-		}
-		ft_lstadd_back(map, new);
-	}
-	get_next_line(-1);
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }

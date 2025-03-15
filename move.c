@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:11:23 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/13 17:51:50 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/14 16:03:17 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void disable_collect(t_map *p, t_pos c)
 			p->img.collectible->instances[i].enabled = false;
 			p->map[c.y][c.x] = '0';
 			cn++;
+			break ;
 		}
 		i++;
 	}
@@ -42,7 +43,7 @@ void disable_collect(t_map *p, t_pos c)
 
 void move_right(t_map *p, t_pos c)
 {
-	if (p->map[c.y][c.x + 1] != '1' && mlx_is_key_down(p->mlx, MLX_KEY_RIGHT))
+	if (p->map[c.y][c.x + 1] != '1' && p->key.key == MLX_KEY_RIGHT && p->key.action == MLX_PRESS)
 	{
 		p->img.player->instances[0].x += 64;
 		if (p->map[c.y][c.x + 1] == 'C' || p->map[c.y][c.x + 1] == 'E')
@@ -55,7 +56,7 @@ void move_right(t_map *p, t_pos c)
 
 void move_left(t_map *p, t_pos c)
 {
-	if (p->map[c.y][c.x - 1] != '1' && mlx_is_key_down(p->mlx, MLX_KEY_LEFT))
+	if (p->map[c.y][c.x - 1] != '1' && p->key.key == MLX_KEY_LEFT && p->key.action == MLX_PRESS)
 	{
 		
 		p->img.player->instances[0].x -= 64;
@@ -69,7 +70,7 @@ void move_left(t_map *p, t_pos c)
 
 void move_up(t_map *p, t_pos c)
 {
-	if (p->map[c.y - 1][c.x] != '1' && mlx_is_key_down(p->mlx, MLX_KEY_UP))
+	if (p->map[c.y - 1][c.x] != '1' && p->key.key == MLX_KEY_UP && p->key.action == MLX_PRESS)
 	{
 		p->img.player->instances[0].y -= 64;
 		if (p->map[c.y - 1][c.x] == 'C' || p->map[c.y - 1][c.x] == 'E')
@@ -83,7 +84,7 @@ void move_up(t_map *p, t_pos c)
 
 void move_down(t_map *p, t_pos c)
 {
-	if (p->map[c.y + 1][c.x] != '1' && mlx_is_key_down(p->mlx, MLX_KEY_DOWN))
+	if (p->map[c.y + 1][c.x] != '1' && p->key.key == MLX_KEY_DOWN && p->key.action == MLX_PRESS)
 	{
 		p->img.player->instances[0].y += 64;
 		if (p->map[c.y + 1][c.x] == 'C' || p->map[c.y + 1][c.x] == 'E')

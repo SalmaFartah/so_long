@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:44:05 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/13 19:18:52 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/15 21:05:27 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void display(t_list *lst)
 		printf("%s", lst->data);
 		lst = lst->next;
 	}
-	
 }
 
 int	valid(t_list *map)
@@ -31,28 +30,34 @@ int	valid(t_list *map)
 	return (1);
 }
 
-
 void ll()
 {
 	system("leaks -q so_long");
 }
 
-
 int	main(int ac, char *av[])
 {
 	t_list	*map;
+    int checker;
 	
 
 	map = NULL;
+	checker = 0;
 	atexit(ll);
+	if (ac != 2)
+		return(write(2, "Error\n/!\\ Need one argument\n", 29));
 	if (ac == 2)
 	{
-		init_map(&map, av[1]);
-		if (!map)
-			return (0);
+		if (check_file(av[1]) || check_extension(av[1]))
+			return (1);
+		init_map(&map, av[1], &checker);
+		if (!map && checker != -5)
+			return (write(2, "Error\nMap file emtpy\n", 21), 1);
 		if(!valid(map))
-			return(ft_lstclear(&map, free), 1);
-		init_game(map);
+			return (ft_lstclear(&map, free), 1);
+		init_game(map, &checker);
+		if (checker == 1)
+			return (ft_lstclear(&map, free), 1);
 		return(ft_lstclear(&map, free), 0);
 	}
 }

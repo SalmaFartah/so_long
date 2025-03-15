@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:49:47 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/03 15:50:45 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/15 20:27:08 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	rectangular(t_list *map)
 	while (map)
 	{
 		if (sl_strlen(map->data) != lenght)
-			return (write(2, "Error\nThe map is not rectangular !\n", 36), 0);
+			return (write(2, "Error\nMap not rectangular !\n", 29), 0);
 		map = map->next;
 	}
 	return (1);
