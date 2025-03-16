@@ -6,16 +6,16 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:11:23 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/14 16:03:17 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/16 15:35:27 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void disable_collect(t_map *p, t_pos c)
+void	disable_collect(t_map *p, t_pos c)
 {
-	size_t i;
-	static size_t cn;
+	size_t			i;
+	static size_t	cn;
 
 	i = 0;
 	while (i < p->img.collectible->count)
@@ -41,9 +41,10 @@ void disable_collect(t_map *p, t_pos c)
 		mlx_close_window(p->mlx);
 }
 
-void move_right(t_map *p, t_pos c)
+void	move_right(t_map *p, t_pos c)
 {
-	if (p->map[c.y][c.x + 1] != '1' && p->key.key == MLX_KEY_RIGHT && p->key.action == MLX_PRESS)
+	if (p->map[c.y][c.x + 1] != '1' && p->key.key == MLX_KEY_RIGHT \
+	&& p->key.action == MLX_PRESS)
 	{
 		p->img.player->instances[0].x += 64;
 		if (p->map[c.y][c.x + 1] == 'C' || p->map[c.y][c.x + 1] == 'E')
@@ -54,11 +55,11 @@ void move_right(t_map *p, t_pos c)
 	}
 }
 
-void move_left(t_map *p, t_pos c)
+void	move_left(t_map *p, t_pos c)
 {
-	if (p->map[c.y][c.x - 1] != '1' && p->key.key == MLX_KEY_LEFT && p->key.action == MLX_PRESS)
+	if (p->map[c.y][c.x - 1] != '1' && p->key.key == MLX_KEY_LEFT && \
+	p->key.action == MLX_PRESS)
 	{
-		
 		p->img.player->instances[0].x -= 64;
 		if (p->map[c.y][c.x - 1] == 'C' || p->map[c.y][c.x - 1] == 'E')
 		{
@@ -68,9 +69,10 @@ void move_left(t_map *p, t_pos c)
 	}
 }
 
-void move_up(t_map *p, t_pos c)
+void	move_up(t_map *p, t_pos c)
 {
-	if (p->map[c.y - 1][c.x] != '1' && p->key.key == MLX_KEY_UP && p->key.action == MLX_PRESS)
+	if (p->map[c.y - 1][c.x] != '1' && p->key.key == MLX_KEY_UP && \
+	p->key.action == MLX_PRESS)
 	{
 		p->img.player->instances[0].y -= 64;
 		if (p->map[c.y - 1][c.x] == 'C' || p->map[c.y - 1][c.x] == 'E')
@@ -79,12 +81,12 @@ void move_up(t_map *p, t_pos c)
 			disable_collect(p, c);
 		}
 	}
-	// img.player->instances[0].enabled = 
 }
 
-void move_down(t_map *p, t_pos c)
+void	move_down(t_map *p, t_pos c)
 {
-	if (p->map[c.y + 1][c.x] != '1' && p->key.key == MLX_KEY_DOWN && p->key.action == MLX_PRESS)
+	if (p->map[c.y + 1][c.x] != '1' && p->key.key == MLX_KEY_DOWN && \
+	p->key.action == MLX_PRESS)
 	{
 		p->img.player->instances[0].y += 64;
 		if (p->map[c.y + 1][c.x] == 'C' || p->map[c.y + 1][c.x] == 'E')

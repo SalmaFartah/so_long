@@ -6,13 +6,13 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:08:30 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 22:19:58 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/16 19:22:45 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void free_textures(t_textture txt)
+void	free_textures(t_textture txt)
 {
 	if (txt.collectible)
 		mlx_delete_texture(txt.collectible);
@@ -28,12 +28,12 @@ void free_textures(t_textture txt)
 		mlx_delete_texture(txt.wall);
 }
 
-t_image init_image(mlx_t *mlx)
+t_image	init_image(mlx_t *mlx)
 {
-	t_textture txt;
-	t_image img;
+	t_textture	txt;
+	t_image		img;
 
-	txt.collectible = mlx_load_png("./textures/collectible1.png");
+	txt.collectible = mlx_load_png("./textures/collectibdle1.png");
 	txt.player = mlx_load_png("./textures/player.png");
 	txt.free_space = mlx_load_png("./textures/free.png");
 	txt.wall = mlx_load_png("./textures/wll.png");
@@ -52,12 +52,11 @@ t_image init_image(mlx_t *mlx)
 	return (img.checker = 0, img);
 }
 
-
-void my_keyhook(mlx_key_data_t key, void *p)
+void	my_keyhook(mlx_key_data_t key, void *p)
 {
-	t_map	*pt;
-	t_pos c;
-	static int v;
+	t_map		*pt;
+	t_pos		c;
+	static int	v;
 
 	pt = (t_map *)p;
 	pt->key = key;
@@ -66,11 +65,11 @@ void my_keyhook(mlx_key_data_t key, void *p)
 	if ((key.key == MLX_KEY_RIGHT && key.action == MLX_PRESS \
 	&& pt->map[c.y][c.x + 1] != '1') \
 	|| (key.key == MLX_KEY_LEFT && key.action == MLX_PRESS \
-	 && pt->map[c.y][c.x - 1] != '1') \
+	&& pt->map[c.y][c.x - 1] != '1') \
 	|| (key.key == MLX_KEY_DOWN && key.action == MLX_PRESS \
-	 && pt->map[c.y + 1][c.x] != '1') \
+	&& pt->map[c.y + 1][c.x] != '1') \
 	|| (key.key == MLX_KEY_UP && key.action == MLX_PRESS \
-	 && pt->map[c.y - 1][c.x] != '1'))
+	&& pt->map[c.y - 1][c.x] != '1'))
 		ft_printf("%d\n", ++v);
 	if (mlx_is_key_down(pt->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(pt->mlx);
@@ -80,19 +79,18 @@ void my_keyhook(mlx_key_data_t key, void *p)
 	move_down(pt, c);
 }
 
-void init_game(t_list *map, int *checker)
+void	init_game(t_list *map, int *checker)
 {
 	mlx_t	*mlx;
 	t_map	p;
 
-	
 	mlx = mlx_init(sl_strlen(map->data) * WIDTH, \
 	ft_lstsize(map) * HEIGHT, "so_long", false);
 	p.img = init_image(mlx);
 	if (p.img.checker == 1)
 	{
-		write(2, "Texture doesn't exist or can't load it !\n", 42);
 		*checker = 1;
+		write(2, "Texture doesn't exist or can't load it !\n", 42);
 		return ;
 	}
 	draw_map(map, p.img, mlx);

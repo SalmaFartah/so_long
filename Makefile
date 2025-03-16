@@ -6,13 +6,12 @@ CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
 
 USER = sfartah
 
-LIBS = ./MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+LIBS = ./MLX42/build/libmlx42.a -I include -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 
 NAME = so_long
 
 SRC = 	so_long.c\
 		init_map.c\
-		display_ar.c\
 		draw_map.c\
 		move.c\
 		init_game.c\
@@ -49,9 +48,7 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 %.o : %.c so_long.h gnxtL/get_next_line.h
-	@$(CC) $(CFLAGS) -c $< $(HEADERS) -o $@
-
-
+	$(CC) $(CFLAGS) -c $< $(HEADERS) -o $@
 	
 clone_mlx :
 	@git clone https://github.com/codam-coding-college/MLX42.git
@@ -59,9 +56,8 @@ clone_mlx :
 build :
 	@cmake ./MLX42 -B ./MLX42/build && make -C ./MLX42/build
 
-
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADERS) -o $@
+	$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADERS) -o $@
 
 clean :
 	@rm -rf $(OBJ)

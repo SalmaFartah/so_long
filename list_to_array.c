@@ -6,13 +6,13 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 16:38:01 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 16:38:40 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/16 15:35:43 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char **list_to_array(t_list *map)
+char	**list_to_array(t_list *map)
 {
 	char	**new;
 	int		i;

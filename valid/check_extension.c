@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:51:35 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 22:51:15 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/16 17:50:56 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_file(char *file)
 	if (fd < 0)
 	{
 		write(2, "Error\n/!\\ Map file not exist\n", 29);
-		return (1);		
+		return (1);
 	}
 	return (0);
 }
@@ -56,13 +56,14 @@ int	check_extension(char *file)
 		if (sp[i][j] == '.')
 		{
 			if (ft_strcmp(sp[i] + j, ".ber"))
-				return (free_array(sp), \
-                write(2, "Error\nExtension of map file must be (.ber)\n", 44), 1);
+			{
+				write(2, "Error\nExtension of map file must be (.ber)\n", 44);
+				return (free_array(sp), 1);
+			}
 			else
 				break ;
 		}
 		j--;
 	}
-	free_array(sp);
-	return (0);
+	return (free_array(sp), 0);
 }
