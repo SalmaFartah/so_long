@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:40:42 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 21:02:49 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/16 14:00:39 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,18 @@
 # define WIDTH 64
 # define HEIGHT 64
 
-#include <stdio.h>
+# include <stdio.h>
+# include <stdarg.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include "MLX42/include/MLX42/MLX42.h"
-# include "disp_func/ft_printf.h"
 
 typedef struct
 {
     int x;
     int y;
 }				t_pos;
-
-
 
 typedef struct
 {
@@ -92,7 +90,7 @@ int		construction(t_list *map);
 int		rectangular(t_list *map);
 int     check_extension(char *file);
 int		count(t_list *map, char c);
-int		check_SEC(t_list *map);
+int		check_sec(t_list *map);
 int     check_file(char *file);
 int		check_lines(t_list *map);
 int		is_wall(char *data);
@@ -115,5 +113,13 @@ t_image init_image(mlx_t *mlx);
 // -------------------------- DRAW_MAP ---------------------------- //
 void	disp_background(t_list *map, t_image img, mlx_t *window);
 void    draw_map(t_list *map, t_image img, mlx_t *window);
+// -------------------------- PRINTF ---------------------------- //
+int	ft_printf(const char *format, ...);
+int	putch(char c);
+int	putst(char *str);
+int	putnb(int nb);
+int	putunb(unsigned int nb);
+int	putadrs(void *p, char c);
+int	puthex(unsigned long nb, char c);
 
 #endif

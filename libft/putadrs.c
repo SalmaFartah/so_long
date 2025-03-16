@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   putadrs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 12:33:00 by sfartah           #+#    #+#             */
-/*   Updated: 2024/12/01 22:37:22 by sfartah          ###   ########.fr       */
+/*   Created: 2024/11/25 15:52:38 by sfartah           #+#    #+#             */
+/*   Updated: 2025/03/16 14:04:48 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../so_long.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+int	putadrs(void *p, char c)
+{
+	int	t;
 
-int	ft_printf(const char *format, ...);
-int	putch(char c);
-int	putst(char *str);
-int	putnb(int nb);
-int	putunb(unsigned int nb);
-int	putadrs(void *p, char c);
-int	puthex(unsigned long nb, char c);
-
-#endif
+	t = 0;
+	t += write(1, "0x", 2);
+	t += puthex((unsigned long)p, c);
+	return (t);
+}

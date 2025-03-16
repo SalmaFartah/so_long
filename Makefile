@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
 
 USER = sfartah
 
-LIBS = ./MLX42/build/libmlx42.a ./disp_func/libftprintf.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+LIBS = ./MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 NAME = so_long
 
@@ -35,14 +35,23 @@ SRC = 	so_long.c\
 		libft/ft_calloc.c\
 		libft/ft_bzero.c\
 		libft/ft_split.c\
-		libft/ft_strcmp.c
+		libft/ft_strcmp.c\
+		libft/putadrs.c\
+		libft/putch.c\
+		libft/puthex.c\
+		libft/putnb.c\
+		libft/putst.c\
+		libft/putunb.c\
+		libft/ft_printf.c
 	
 OBJ = $(SRC:.c=.o)
 
-%.o : %.c so_long.h gnxtL/get_next_line.h disp_func/ft_printf.h
+all : $(NAME)
+
+%.o : %.c so_long.h gnxtL/get_next_line.h
 	@$(CC) $(CFLAGS) -c $< $(HEADERS) -o $@
 
-all : $(NAME)
+
 	
 clone_mlx :
 	@git clone https://github.com/codam-coding-college/MLX42.git
@@ -52,15 +61,12 @@ build :
 
 
 $(NAME) : $(OBJ)
-	@make -C ./disp_func
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADERS) -o $@
 
 clean :
-	@make -C ./disp_func clean
 	@rm -rf $(OBJ)
 
 fclean : clean
-	@make -C ./disp_func fclean
 	@rm -rf $(NAME)
 
 re : fclean all

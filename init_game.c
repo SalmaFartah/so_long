@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:08:30 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 21:01:02 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/15 22:19:58 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void init_game(t_list *map, int *checker)
 	p.img = init_image(mlx);
 	if (p.img.checker == 1)
 	{
-		ft_printf("Texture doesn't exist or can't load it !\n");
+		write(2, "Texture doesn't exist or can't load it !\n", 42);
 		*checker = 1;
 		return ;
 	}

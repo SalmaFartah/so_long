@@ -6,13 +6,13 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:51:35 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 21:50:15 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/15 22:51:15 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int search(char *file, char c)
+int	search(char *file, char c)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ int search(char *file, char c)
 	return (0);
 }
 
-int check_file(char *file)
+int	check_file(char *file)
 {
 	int	fd;
 
@@ -39,18 +39,18 @@ int check_file(char *file)
 	return (0);
 }
 
-int check_extension(char *file)
+int	check_extension(char *file)
 {
-	char **sp;
-	int	i;
-	int j;
+	char	**sp;
+	int		i;
+	int		j;
 
 	sp = ft_split(file, '/');
 	i = cnt_words(file, '/') - 1;
 	j = sl_strlen(sp[i]) - 1;
 	if (sl_strlen(sp[i]) <= 4 || !search(sp[i], '.'))
 		return (free_array(sp), \
-            write(2, "Error\nFile hidden or extension is not (.ber)\n", 45), 1);
+			write(2, "Error\nFile hidden or extension is not (.ber)\n", 45), 1);
 	while (sp[i][j])
 	{
 		if (sp[i][j] == '.')

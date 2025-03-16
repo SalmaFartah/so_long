@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putst.c                                            :+:      :+:    :+:   */
+/*   putunb.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 21:57:28 by sfartah           #+#    #+#             */
-/*   Updated: 2024/11/30 15:05:37 by sfartah          ###   ########.fr       */
+/*   Created: 2024/11/25 12:36:30 by sfartah           #+#    #+#             */
+/*   Updated: 2025/03/16 14:05:20 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../so_long.h"
 
-int	putst(char *str)
+static int	cnt(unsigned int nbr)
 {
-	int	kt;
-	int	i;
+	int	sz;
 
-	kt = 0;
-	if (!str)
-		kt += putst("(null)");
-	i = 0;
-	while (str && str[i])
+	if (nbr == 0)
+		return (1);
+	sz = 0;
+	while (nbr > 0)
 	{
-		kt += putch(str[i]);
-		i++;
+		sz++;
+		nbr /= 10;
 	}
-	return (kt);
+	return (sz);
+}
+
+int	putunb(unsigned int nb)
+{
+	if (nb < 10)
+		putch(nb + '0');
+	else
+	{
+		putunb(nb / 10);
+		putunb(nb % 10);
+	}
+	return (cnt(nb));
 }

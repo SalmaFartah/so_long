@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:44:05 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 21:05:27 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/15 22:40:07 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void display(t_list *lst)
 int	valid(t_list *map)
 {
 	if (!construction(map) || !rectangular(map) \
-	|| !check_walls(map) || !check_SEC(map) \
+	|| !check_walls(map) || !check_sec(map) \
 	|| !check_path(map))
 		return (0);
 	return (1);

@@ -1,52 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putnb.c                                            :+:      :+:    :+:   */
+/*   putst.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 23:19:16 by sfartah           #+#    #+#             */
-/*   Updated: 2024/12/02 15:45:15 by sfartah          ###   ########.fr       */
+/*   Created: 2024/11/24 21:57:28 by sfartah           #+#    #+#             */
+/*   Updated: 2025/03/16 14:05:16 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../so_long.h"
 
-static int	cnt(long nbr)
-{
-	int	sz;
-
-	if (nbr == 0)
-		return (1);
-	sz = 0;
-	(nbr < 0) && (nbr *= -1) && (sz++);
-	while (nbr > 0)
-	{
-		sz++;
-		nbr /= 10;
-	}
-	return (sz);
-}
-
-int	putnb(int nb)
+int	putst(char *str)
 {
 	int	kt;
+	int	i;
 
-	kt = cnt(nb);
-	if (nb == -2147483648)
-		write(1, "-2147483648", 11);
-	else if (nb < 0)
+	kt = 0;
+	if (!str)
+		kt += putst("(null)");
+	i = 0;
+	while (str && str[i])
 	{
-		putch('-');
-		nb *= -1;
-		putnb(nb);
-	}
-	else if (nb >= 0 && nb < 10)
-		putch (nb + '0');
-	else
-	{
-		putnb(nb / 10);
-		putnb(nb % 10);
+		kt += putch(str[i]);
+		i++;
 	}
 	return (kt);
 }

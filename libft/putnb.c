@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   putunb.c                                           :+:      :+:    :+:   */
+/*   putnb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 12:36:30 by sfartah           #+#    #+#             */
-/*   Updated: 2024/12/02 15:45:05 by sfartah          ###   ########.fr       */
+/*   Created: 2024/11/24 23:19:16 by sfartah           #+#    #+#             */
+/*   Updated: 2025/03/16 14:19:12 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../so_long.h"
 
-static int	cnt(unsigned int nbr)
+static int	cnt(long nbr)
 {
 	int	sz;
 
 	if (nbr == 0)
 		return (1);
 	sz = 0;
+	(nbr < 0) && (nbr *= -1) && (sz++);
 	while (nbr > 0)
 	{
 		sz++;
@@ -27,14 +28,25 @@ static int	cnt(unsigned int nbr)
 	return (sz);
 }
 
-int	putunb(unsigned int nb)
+int	putnb(int nb)
 {
-	if (nb < 10)
-		putch(nb + '0');
+	int	kt;
+
+	kt = cnt(nb);
+	if (nb == -2147483648)
+		write(1, "-2147483648", 11);
+	else if (nb < 0)
+	{
+		putch('-');
+		nb *= -1;
+		putnb(nb);
+	}
+	else if (nb >= 0 && nb < 10)
+		putch (nb + '0');
 	else
 	{
-		putunb(nb / 10);
-		putunb(nb % 10);
+		putnb(nb / 10);
+		putnb(nb % 10);
 	}
-	return (cnt(nb));
+	return (kt);
 }

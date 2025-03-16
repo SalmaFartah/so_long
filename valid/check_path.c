@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:04:29 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 17:22:34 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/15 22:43:14 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_pos	start_pos(t_list *map)
 {
-	t_pos st;
+	t_pos	st;
 
 	st.y = 0;
 	while (map)
@@ -23,13 +23,13 @@ t_pos	start_pos(t_list *map)
 		while (map->data[st.x])
 		{
 			if (map->data[st.x] == 'P')
-				return(st);
+				return (st);
 			st.x++;
 		}
 		st.y++;
 		map = map->next;
 	}
-	return(st);
+	return (st);
 }
 
 void	flood_fill(char **map, int x, int y)
@@ -43,11 +43,11 @@ void	flood_fill(char **map, int x, int y)
 	flood_fill(map, x, y - 1);
 }
 
-int cnt_ar(char **st, char c)
+int	cnt_ar(char **st, char c)
 {
-	int cnt;
-	int i;
-	int j;
+	int	cnt;
+	int	i;
+	int	j;
 
 	i = 0;
 	cnt = 0;
@@ -72,8 +72,8 @@ int	check_path(t_list *p)
 		return (0);
 	pos = start_pos(p);
 	flood_fill(map, pos.x, pos.y);
-	if(!cnt_ar(map, 'C') && !cnt_ar(map, 'E'))
-		return(free_array(map), 1);
+	if (!cnt_ar(map, 'C') && !cnt_ar(map, 'E'))
+		return (free_array(map), 1);
 	free_array(map);
 	return (write(2, "Error\nPath invalid in map !\n", 29), 0);
 }

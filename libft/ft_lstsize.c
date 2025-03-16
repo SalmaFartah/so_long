@@ -6,12 +6,11 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:05:56 by sfartah           #+#    #+#             */
-/*   Updated: 2025/02/27 10:51:57 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/15 22:52:38 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
 
 int	ft_lstsize(t_list *lst)
 {
