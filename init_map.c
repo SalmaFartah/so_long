@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 13:11:52 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/15 21:03:37 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/16 14:57:26 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void init_map(t_list **map, char *file, int *checker)
 		if (!new)
 		{
 			*checker = -5;
+			close(fd);
 			return(ft_lstclear(map, free));
 		}
 		ft_lstadd_back(map, new);
 	}
 	get_next_line(-1);
+	close(fd);
 }
