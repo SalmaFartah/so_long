@@ -6,7 +6,7 @@
 /*   By: sfartah <sfartah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:08:30 by sfartah           #+#    #+#             */
-/*   Updated: 2025/03/16 19:22:45 by sfartah          ###   ########.fr       */
+/*   Updated: 2025/03/21 14:05:03 by sfartah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_image	init_image(mlx_t *mlx)
 	t_textture	txt;
 	t_image		img;
 
-	txt.collectible = mlx_load_png("./textures/collectibdle1.png");
+	txt.collectible = mlx_load_png("./textures/collectible.png");
 	txt.player = mlx_load_png("./textures/player.png");
 	txt.free_space = mlx_load_png("./textures/free.png");
 	txt.wall = mlx_load_png("./textures/wll.png");

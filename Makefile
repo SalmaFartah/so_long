@@ -18,7 +18,7 @@ SRC = 	so_long.c\
 		list_to_array.c\
 		valid/costruction.c\
 		valid/check_walls.c\
-		valid/check_SEC.c\
+		valid/check_sec.c\
 		valid/check_path.c\
 		valid/free_ar.c\
 		valid/check_extension.c\
@@ -45,10 +45,32 @@ SRC = 	so_long.c\
 	
 OBJ = $(SRC:.c=.o)
 
+GRAY = \033[0;90m
+DEFAULT = \033[0;39m
+BLACK   = \033[0;30m
+RED     = \033[0;31m
+GREEN   = \033[0;32m
+YELLOW  = \033[0;33m
+BLUE    = \033[0;34m
+MAGENTA = \033[0;35m
+CYAN    = \033[0;36m
+WHITE   = \033[0;37m
+
+# Bold Text Colors
+BOLD_BLACK   = \033[1;30m
+BOLD_RED     = \033[1;31m
+BOLD_GREEN   = \033[1;32m
+BOLD_YELLOW  = \033[1;33m
+BOLD_BLUE    = \033[1;34m
+BOLD_MAGENTA = \033[1;35m
+BOLD_CYAN    = \033[1;36m
+BOLD_WHITE   = \033[1;37m
+
 all : $(NAME)
 
 %.o : %.c so_long.h gnxtL/get_next_line.h
-	$(CC) $(CFLAGS) -c $< $(HEADERS) -o $@
+	@echo "$(BOLD_MAGENTA)Building object file $@…$(DEFAULT)"
+	@$(CC) $(CFLAGS) -c $< $(HEADERS) -o $@
 	
 clone_mlx :
 	@git clone https://github.com/codam-coding-college/MLX42.git
@@ -57,13 +79,19 @@ build :
 	@cmake ./MLX42 -B ./MLX42/build && make -C ./MLX42/build
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADERS) -o $@
+	@echo "$(BOLD_BLUE)─────────────────────────────────────────"
+	@echo "✅ linking to executable file <$(NAME)>…"
+	@echo "─────────────────────────────────────────$(DEFAULT)"
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(HEADERS) -o $@
 
 clean :
+	@echo "$(GRAY)🧹 cleaning object files…$(DEFAULT)"
 	@rm -rf $(OBJ)
 
-fclean : clean
-	@rm -rf $(NAME)
+fclean :
+	@echo "$(GRAY)🚮 Full clean…$(DEFAULT)"
+	@rm -rf MLX42
+	@rm -rf $(NAME) $(OBJ)
 
 re : fclean all
 
